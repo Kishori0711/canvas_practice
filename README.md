@@ -7,6 +7,7 @@ HTML Canvas, Tailwind CSS aur JavaScript se bane design experiments. Har design 
 | Folder | Description |
 | --- | --- |
 | [canvas-playground](./canvas-playground) | Particle network, ocean sunset, flow field art, kaleidoscope drawing pad, fireworks, 3D dot sphere aur spirograph |
+| [flow-3d-text](./flow-3d-text) | Animated flow field background ke upar mouse se tilt hone wala 3D extruded text, color palettes aur PNG export |
 
 ## Kaise chalayein
 
