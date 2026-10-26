@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canvas Playground</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+    .gradient-text {
+      background: linear-gradient(90deg, #22d3ee, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased">
+
+  <!-- Hero: interactive particle network -->
+  <section id="hero-section" class="relative h-screen min-h-[520px] overflow-hidden">
+    <canvas id="hero" class="absolute inset-0 w-full h-full"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950 pointer-events-none"></div>
+    <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 pointer-events-none">
+      <span class="mb-4 px-4 py-1 rounded-full border border-white/10 bg-white/5 text-xs tracking-widest uppercase text-slate-400">
+        HTML Canvas + Tailwind + JS
+      </span>
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight gradient-text pb-3 leading-tight">Canvas Playground</h1>
+      <p class="mt-6 max-w-xl text-slate-400 text-lg">
+        Mouse ghumao — particles tumse door bhaagenge. Neeche scroll karo aur dekho canvas se kya-kya ban sakta hai.
+      </p>
+      <a href="#demos" class="pointer-events-auto mt-10 px-6 py-3 rounded-xl bg-white text-slate-900 font-semibold hover:scale-105 transition">
+        Demos dekho ↓
+      </a>
+    </div>
+  </section>
+
+  <main id="demos" class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Waves -->
+      <article class="rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl shadow-cyan-500/5">
+        <canvas id="waves" class="w-full h-80 block"></canvas>
+        <div class="p-5">
+          <h2 class="text-xl font-bold text-white">Ocean Sunset</h2>
+          <p class="text-sm text-slate-400 mt-1">Sine waves + gradients se bana animated scene. <code class="text-cyan-300">Math.sin()</code> ka kamaal.</p>
+        </div>
+      </article>
+
+      <!-- Flow field -->
+      <article class="rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl shadow-violet-500/5">
+        <canvas id="flow" class="w-full h-80 block"></canvas>
+        <div class="p-5 flex items-start justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white">Generative Flow Art</h2>
+            <p class="text-sm text-slate-400 mt-1">Hazaaron particles ek "flow field" follow karte hain. Har baar naya art.</p>
+          </div>
+          <button id="flow-reset" class="shrink-0 px-4 py-2 rounded-lg bg-violet-500 hover:bg-violet-400 text-white text-sm font-semibold transition">Naya Art</button>
+        </div>
+      </article>
+
+      <!-- Kaleidoscope drawing pad -->
+      <article class="rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl shadow-pink-500/5 md:col-span-2">
+        <canvas id="draw" class="w-full h-[28rem] block touch-none cursor-crosshair"></canvas>
+        <div class="p-5 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white">Kaleidoscope Drawing Pad</h2>
+            <p class="text-sm text-slate-400 mt-1">Canvas pe draw karo — rainbow brush aur symmetry khud lag jaayegi.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 text-sm">
+            <label class="flex items-center gap-2">
+              Brush
+              <input id="draw-size" type="range" min="1" max="20" value="4" class="accent-pink-500" />
+            </label>
+            <label class="flex items-center gap-2">
+              Symmetry
+              <select id="draw-sym" class="bg-slate-800 border border-white/10 rounded-md px-2 py-1">
+                <option value="1">Off</option>
+                <option value="4">4</option>
+                <option value="6" selected>6</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+              </select>
+            </label>
+            <button id="draw-clear" class="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 font-semibold transition">Clear</button>
+            <button id="draw-save" class="px-4 py-2 rounded-lg bg-pink-500 hover:bg-pink-400 text-white font-semibold transition">Download PNG</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fireworks -->
+      <article class="rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl shadow-amber-500/5">
+        <canvas id="fireworks" class="w-full h-80 block cursor-pointer"></canvas>
+        <div class="p-5">
+          <h2 class="text-xl font-bold text-white">Fireworks</h2>
+          <p class="text-sm text-slate-400 mt-1">Canvas pe click karo — wahan firework phatega. Particle physics + gravity.</p>
+        </div>
+      </article>
+
+      <!-- 3D sphere -->
+      <article class="rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl shadow-emerald-500/5">
+        <canvas id="sphere" class="w-full h-80 block"></canvas>
+        <div class="p-5">
+          <h2 class="text-xl font-bold text-white">3D Dot Sphere</h2>
+          <p class="text-sm text-slate-400 mt-1">2D canvas pe 3D! Mouse hilao, sphere ghoomega. Perspective projection se bana.</p>
+        </div>
+      </article>
+
+      <!-- Spirograph -->
+      <article class="rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl shadow-sky-500/5 md:col-span-2">
+        <canvas id="spiro" class="w-full h-96 block"></canvas>
+        <div class="p-5 flex items-start justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white">Spirograph</h2>
+            <p class="text-sm text-slate-400 mt-1">Math formula (hypotrochoid) se khud draw hota pattern. Random parameters, endless designs.</p>
+          </div>
+          <button id="spiro-reset" class="shrink-0 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold transition">Naya Pattern</button>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="text-center text-slate-500 text-sm pb-10">
+    Made with &lt;canvas&gt;, Tailwind CSS &amp; vanilla JavaScript
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
